@@ -14,10 +14,10 @@ In professional sports, player availability directly impacts team performance an
 
 ### Core Features
 
-- Financial Cost Tracking – Aggregates treatment costs across sports categories to highlight spending trends and resource allocation
-- Injury Severity Monitoring – Breaks down injury occurrences by severity (Minor, Moderate, Severe) to help coaching staff adjust training loads
-- Athlete Risk Classification – Flags athletes as High, Medium, or Low Risk based on historical multi-injury records before they are cleared for full-contact training
-- Squad Availability Benchmarking – Provides visibility into historical recovery averages to help technical directors benchmark return-to-play timelines
+- **Financial Cost Tracking** – Aggregates treatment costs across sports categories to highlight spending trends and resource allocation
+- **Injury Severity Monitoring** – Breaks down injury occurrences by severity (Minor, Moderate, Severe) to help coaching staff adjust training loads
+- **Athlete Risk Classification** – Flags athletes as High, Medium, or Low Risk based on historical multi-injury records before they are cleared for full-contact training
+- **Squad Availability Benchmarking** – Provides visibility into historical recovery averages to help technical directors benchmark return-to-play timelines
 
 ---
 
@@ -53,15 +53,15 @@ Dim_Athletes[AthleteID] → Fact_InjuryLogs[AthleteID] (One-to-Many)
 
 The dashboard contains four main sections:
 
-1. Executive Summary Cards – Total treatment cost, severe injury count, average recovery days
-2. Athlete Risk Matrix – Grid showing each athlete, injury history, and risk classification (High/Medium/Low)
-3. Monthly Injury Trends – Stacked column chart showing injury volume by month and severity
-4. Cost by Sport – Horizontal bar chart showing medical spending distribution across sports
+1. **Executive Summary Cards** – Total treatment cost, severe injury count, average recovery days
+2. **Athlete Risk Matrix** – Grid showing each athlete, injury history, and risk classification (High/Medium/Low)
+3. **Monthly Injury Trends** – Stacked column chart showing injury volume by month and severity
+4. **Cost by Sport** – Horizontal bar chart showing medical spending distribution across sports
 
 
 
 ## Visuals
-![Correlation Heatmap](Heatmap%20chart.png)
+![AthleteX_dashboard](AthleteX%20Dashboard.png)
 ---
 
 ## Key Insights Derived From The Data
@@ -76,14 +76,8 @@ The dashboard contains four main sections:
 
 ## Tools Used
 
-- Data Preparation: Power Query (data type auditing, schema alignment, date standardization)
-- Data Modeling: Power BI Desktop / DAX (measures, calculated columns, Star Schema)
-- Reporting: Power BI Executive Layout (custom containers, cross-filtering, responsive grids)
+- **Data Preparation:** Power Query (data type auditing, schema alignment, date standardization)
+- **Data Modeling:** Power BI Desktop / DAX (measures, calculated columns, Star Schema)
+- **Reporting:** Power BI Executive Layout (custom containers, cross-filtering, responsive grids)
 
 ---
-
-## Quick Start
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Olumola-6/AthleteX-Care.git
