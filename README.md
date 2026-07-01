@@ -21,6 +21,74 @@ In professional sports, player availability directly impacts team performance an
 
 ---
 
+### Database DDL & Data Cleaning Scripts (MySQL)
+
+Before building any charts, the raw data was pretty messy and spread out. I imported everything into MySQL Workbench first to build a solid foundation and clean up the records properly before moving into Power BI. 
+
+Here is what I did on the SQL backend:
+* **Setting up the Tables:** I created two distinct tables—one master table for the unique athlete profiles and an injury logs table. I linked them together using the `AthleteID` so that the database stayed organized and wouldn't allow corrupted or mismatched records.
+* **Cleaning and Fixing the Numbers:** I wrote update queries to clean up the text formatting, remove accidental extra spaces.
+
+
+Below are the core SQL scripts executed within MySQL Workbench to establish the relational schema and clean the datasets prior to Power BI ingestion.
+
+```sql
+-- 1. DATABASE & SCHEMA SETUP
+CREATE DATABASE IF NOT EXISTS AthleteX_Care;
+
+USE AthleteX_care;
+
+-- Create Master Athlete Dimension Table
+
+CREATE TABLE IF NOT EXISTS Athletes (
+	AthleteID VARCHAR(10) PRIMARY KEY,
+    PlayerName VARCHAR(100),
+    SportEvent VARCHAR(50),
+    Country VARCHAR(50),
+    Age INT
+);
+
+-- Create Injury Logs Fact Table
+
+CREATE TABLE IF NOT EXISTS InjuryLogs (
+	LogID VARCHAR(10) PRIMARY KEY,
+    AthleteID VARCHAR(10),
+    InjuryDetails VARCHAR(100),
+    Severity VARCHAR(20),
+    Status VARCHAR(50),
+    InjuryDate DATE,
+    RecoveryDate DATE,
+    TreatmentCost DECIMAL(10, 2),
+    TreatmentType VARCHAR(50)
+);
+
+-- 2. DATA CLEANING & STANDARDIZATION
+
+SELECT * FROM Athletes LIMIT 5;
+SELECT * FROM InjuryLogs LIMIT 5;
+
+
+SELECT AthleteID, COUNT(*) as Row_Count
+FROM Athletes
+GROUP BY AthleteID
+HAVING COUNT(*) > 1;
+
+
+SELECT LogID, COUNT(*) as Row_Count
+FROM InjuryLogs
+GROUP BY LogID
+HAVING COUNT(*) > 1;
+
+
+SELECT DISTINCT SportEvent FROM Athletes;
+
+SELECT DISTINCT Status FROM InjuryLogs;
+
+SELECT LogID, AthleteID, InjuryDate, RecoveryDate
+FROM InjuryLogs
+WHERE RecoveryDate < InjuryDate;
+```
+
 ## Data Architecture & Modeling
 
 The platform uses a normalized relational database structure with a Star Schema design.
